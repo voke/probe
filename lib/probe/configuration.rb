@@ -9,14 +9,16 @@ module Probe
     attr_accessor :logger
     attr_accessor :environment
     attr_accessor :use_ssl
+    attr_accessor :notify_environments
 
     def initialize
       self.logger = Logger.new($stdout)
       self.logger.level = Logger::DEBUG
+      self.notify_environments = %w(production)
     end
 
     def should_notify?
-      true
+      notify_environments.include?(environment)
     end
 
   end
