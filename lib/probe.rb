@@ -2,6 +2,8 @@ require 'probe/version'
 require 'probe/configuration'
 require 'probe/notification'
 
+require "probe/railtie" if defined?(Rails::Railtie)
+
 module Probe
 
   LOG_PREFIX = "-- [Probe] "
