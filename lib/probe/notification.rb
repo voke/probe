@@ -69,7 +69,8 @@ module Probe
         category: category,
         action: action,
         last_run: last_run,
-        next_run: next_run_with_offset
+        next_run: next_run_with_offset,
+        environment: config.environment
       }
     end
 

@@ -16,4 +16,7 @@ describe Probe::Notification do
 
   end
 
+  describe '#as_json' do
+  end
+
 end
