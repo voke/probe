@@ -44,7 +44,7 @@ module Probe
       end
 
       endpoint = (config.use_ssl ? "https://" : "http://") + config.endpoint
-      Probe.log("Notifying #{endpoint} of [#{category}, #{action}] from api_key #{config.api_key}")
+      Probe.log("Notifying #{endpoint} of #{category}, #{action} from api_key #{config.api_key}")
 
       Notification.deliver_payload(endpoint, @config.api_key, payload)
 
