@@ -1,6 +1,7 @@
 require 'probe/version'
 require 'probe/configuration'
 require 'probe/notification'
+require 'probe/time_parser'
 
 require "probe/railtie" if defined?(Rails::Railtie)
 
@@ -21,7 +22,8 @@ module Probe
       @configuration ||= Configuration.new
     end
 
-    def notify(category, action, options = {})
+    def notify(category, action, next_run = nil, options = {})
+      options[:next_run] = TimeParser.parse(next_run)
       Notification.new(category, action, configuration, options).deliver
     end
 

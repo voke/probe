@@ -8,17 +8,25 @@ module Probe
 
     NOTIFIER_NAME = 'Probe Notifier'
     NOTIFIER_VERSION = Probe::VERSION
+    DEFAULT_OFFSET = 600
+    DEFAULT_NEXT_RUN = 86400
 
     default_timeout 5
     headers  "Content-Type" => "application/json"
 
-    attr_accessor :category, :action, :config, :options
+    attr_accessor :category, :action, :config, :next_run, :offset, :last_run
 
     def initialize(category, action, config, options = {})
       self.category = category
       self.action = action
       self.config = config
-      self.options = options
+      self.next_run = options[:next_run] || default_next_run
+      self.offset = options[:offset] || DEFAULT_OFFSET
+      self.last_run = Time.now.to_i
+    end
+
+    def default_next_run
+      Time.now.to_i + DEFAULT_NEXT_RUN
     end
 
     def deliver
@@ -52,8 +60,17 @@ module Probe
       }
     end
 
+    def next_run_with_offset
+      next_run + offset
+    end
+
     def as_json
-      { category: category, action: action }
+      {
+        category: category,
+        action: action,
+        last_run: last_run,
+        next_run: next_run_with_offset
+      }
     end
 
     class << self
