@@ -1,7 +1,6 @@
 require 'probe/version'
 require 'probe/configuration'
 require 'probe/notification'
-require 'probe/time_parser'
 
 require "probe/railtie" if defined?(Rails::Railtie)
 
