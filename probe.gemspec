@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Probe::VERSION
   spec.authors       = ["Gustav Jonsson"]
   spec.email         = ["gustav@invoke.se"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Send notification about certain events to given endpoint}
+  spec.summary       = %q{Event notifier}
   spec.homepage      = ""
   spec.license       = "MIT"
 
