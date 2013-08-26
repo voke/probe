@@ -21,6 +21,7 @@ module Probe
       self.action = action
       self.config = config
       self.next_run = options[:next_run] || default_next_run
+      raise ArgumentError, 'next_run must be an Integer' unless next_run.is_a?(Integer)
       self.offset = options[:offset] || DEFAULT_OFFSET
       self.last_run = Time.now.to_i
     end

@@ -23,7 +23,7 @@ module Probe
     end
 
     def notify(category, action, next_run = nil, options = {})
-      options[:next_run] = TimeParser.parse(next_run)
+      options[:next_run] = next_run
       Notification.new(category, action, configuration, options).deliver
     end
 
