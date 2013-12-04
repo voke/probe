@@ -19,7 +19,6 @@ And then execute:
     Probe.configure do |config|
       config.api_key = '73ebff703106'
       config.endpoint = 'api.example.com/v1/notify'
-      config.environment = ENV['RACK_ENV']
     end
 
 ### Send notification
