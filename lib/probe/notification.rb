@@ -14,7 +14,7 @@ module Probe
     default_timeout 5
     headers  "Content-Type" => "application/json"
 
-    attr_accessor :category, :action, :config, :next_run, :offset, :last_run
+    attr_accessor :category, :action, :config, :next_run, :offset, :last_run, :force
 
     def initialize(category, action, config, options = {})
       self.category = category
@@ -23,6 +23,7 @@ module Probe
       self.next_run = options[:next_run] ? options[:next_run].to_i : default_next_run
       self.offset = options[:offset] || DEFAULT_OFFSET
       self.last_run = Time.now.to_i
+      self.force = options[:force]
     end
 
     def default_next_run
@@ -31,7 +32,7 @@ module Probe
 
     def deliver
 
-      return unless config.enabled?
+      return unless config.enabled? or force
 
       if @config.api_key.nil?
         Probe.warn("No API key configured, couldn't notify")
