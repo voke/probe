@@ -5,9 +5,9 @@ describe Probe::Configuration do
   describe '#initialize' do
 
     it 'defaults enabled to PROBE_NOTIFY' do
-      ENV['PROBE_NOTIFY'] = 'hello'
+      ENV['PROBE_NOTIFY'] = '1'
       config = Probe::Configuration.new
-      config.enabled.must_equal 'hello'
+      config.enabled.must_equal true
     end
 
   end
