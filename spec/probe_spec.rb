@@ -27,7 +27,14 @@ describe Probe do
 
   describe '.notify' do
 
-    it '' do
+    it 'supports block' do
+
+      dummy = stub(:foo)
+      dummy.expects(:hello)
+
+      Probe.notify(:foo, :bar) do
+        dummy.hello
+      end
 
     end
 

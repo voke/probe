@@ -31,7 +31,7 @@ module Probe
 
     def deliver
 
-      return unless @config.should_notify?
+      return unless config.enabled?
 
       if @config.api_key.nil?
         Probe.warn("No API key configured, couldn't notify")

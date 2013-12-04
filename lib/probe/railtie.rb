@@ -5,7 +5,6 @@ module Probe
 
       Probe.configure do |config|
         config.logger = Rails.logger
-        config.environment = Rails.env.to_s
       end
 
     end
