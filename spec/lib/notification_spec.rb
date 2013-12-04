@@ -16,6 +16,23 @@ describe Probe::Notification do
 
   end
 
+  describe '#deliver' do
+
+    before do
+      Probe.configure do |config|
+        config.api_key = 'foo'
+        config.endpoint = 'example.com/api/'
+      end
+    end
+
+    it 'supports force option' do
+      Probe::Notification.expects(:deliver_payload)
+      Probe.disable
+      Probe.notify('foo', 'bar', nil, force: true)
+    end
+
+  end
+
   describe '#as_json' do
   end
 
