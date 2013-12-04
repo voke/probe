@@ -25,13 +25,6 @@ module Probe
       @configuration ||= Configuration.new
     end
 
-    def signal
-      enable
-      yield
-    ensure
-      disable
-    end
-
     def notify(category, action, next_run = nil, options = {})
       yield if block_given?
       options[:next_run] = next_run
