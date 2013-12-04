@@ -9,6 +9,7 @@ module Probe
     attr_accessor :logger
     attr_accessor :use_ssl
     attr_accessor :enabled
+    attr_accessor :environment
 
     def initialize
       self.logger = Logger.new($stdout)
