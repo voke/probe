@@ -6,4 +6,5 @@ gemspec
 group :development do
   gem 'mocha'
   gem 'guard-minitest'
+  gem 'minitest-reporters'
 end
