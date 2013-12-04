@@ -1,3 +1,4 @@
+require 'forwardable'
 require 'probe/version'
 require 'probe/configuration'
 require 'probe/notification'
@@ -9,6 +10,9 @@ module Probe
   LOG_PREFIX = "-- [Probe] "
 
   class << self
+
+    extend Forwardable
+    def_delegators :configuration, :enable, :disable, :enabled?
 
     def configure(hash = {})
       hash.each do |key, value|
@@ -29,6 +33,7 @@ module Probe
     end
 
     def notify(category, action, next_run = nil, options = {})
+      yield if block_given?
       options[:next_run] = next_run
       Notification.new(category, action, configuration, options).deliver
     end
