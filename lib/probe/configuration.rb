@@ -20,6 +20,10 @@ module Probe
       self.enabled == true
     end
 
+    def disabled?
+      !enabled?
+    end
+
     def enable
       self.enabled = true
     end
